@@ -1,11 +1,10 @@
-setwd("~/OneDrive - San Diego State University (SDSU.EDU)/Spring_2020/MIS-749-BA/Project")
 library(jsonlite)
 
 library(dbplyr)
 library(tidyjson)
 library(dplyr)
 library(tidyverse)
-input_data<-read.csv("ga-customer-revenue-prediction/train.csv", header = TRUE,nrows=500)
+input_data<-read.csv("ga-customer-revenue-prediction/train.csv", header = TRUE)
 head(input_data)
 input_data$totals=as.character(input_data$totals)
 input_data$device=as.character(input_data$device)
@@ -42,6 +41,7 @@ dim(tr_trafficSource)
 tr_trafficSource <- data.frame(tr_trafficSource)
 new_data <- new_data %>% bind_cols(tr_trafficSource)
 
+write_csv(new_data,path="ga-customer-revenue-prediction/train_final.csv")
 
 
 # df1 <- input_data %>% 
